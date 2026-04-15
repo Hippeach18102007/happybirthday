@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'🎂 Sinh nhật ' + ${birthday.recipientName}">Birthday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/birthday.css}">
+</head>
+<body>
+
+<!-- Floating particles background -->
+<div class="bg-particles" id="bgParticles"></div>
+
+<!-- SCENE 1: Envelope -->
+<div class="scene" id="envelopeScene">
+    <div class="scene-hint">✨ Bạn có một tin nhắn đặc biệt ✨</div>
+
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+        <div class="envelope-glow"></div>
+        <div class="envelope" id="envelope">
+            <!-- Envelope back -->
+            <div class="envelope-back"></div>
+            <!-- Envelope flap -->
+            <div class="envelope-flap" id="envelopeFlap">
+                <div class="flap-inner"></div>
+            </div>
+            <!-- Envelope body -->
+            <div class="envelope-body">
+                <div class="envelope-lines">
+                    <div class="line"></div>
+                    <div class="line short"></div>
+                </div>
+                <div class="envelope-seal" id="seal">
+                    <span>💌</span>
+                </div>
+            </div>
+            <!-- Letter peeking out -->
+            <div class="letter-peek" id="letterPeek">
+                <div class="peek-content">
+                    <span>🎂</span>
+                </div>
+            </div>
+        </div>
+        <div class="tap-hint">
+            <span class="tap-icon">👆</span>
+            <span>Nhấn để mở</span>
+        </div>
+    </div>
+</div>
+
+<!-- SCENE 2: Letter + Fireworks -->
+<div class="scene hidden" id="letterScene">
+    <!-- Fireworks canvas -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Floating stars -->
+    <div class="floating-stars" id="floatingStars"></div>
+
+    <!-- Letter -->
+    <div class="letter-container" id="letterContainer">
+        <div class="letter" id="letter">
+            <!-- Letter header decoration -->
+            <div class="letter-decoration top">
+                <span>🌸</span><span>🌟</span><span>🎉</span><span>🌟</span><span>🌸</span>
+            </div>
+
+            <!-- Letter date -->
+            <div class="letter-date" th:text="${birthday.year}">2024</div>
+
+            <!-- Greeting -->
+            <div class="letter-greeting">
+                Kính gửi
+                <span class="recipient-name" th:text="${birthday.recipientName}">Người thân yêu</span>
+            </div>
+
+            <!-- Main wish -->
+            <div class="letter-wish">
+                <div class="wish-title" th:text="${birthday.message}">Chúc Mừng Sinh Nhật!</div>
+                <div class="cake-animation">🎂</div>
+            </div>
+
+            <!-- Message content -->
+            <div class="letter-content">
+                <p th:text="${birthday.subMessage}">Lời chúc sẽ hiện ở đây...</p>
+            </div>
+
+            <!-- Signature -->
+            <div class="letter-signature">
+                <div class="signature-line">Với tất cả tình yêu thương,</div>
+                <div class="signature-name" th:text="${birthday.senderName}">Người gửi</div>
+                <div class="signature-hearts">💕</div>
+            </div>
+
+            <!-- Bottom decoration -->
+            <div class="letter-decoration bottom">
+                <span>🌹</span><span>💫</span><span>🦋</span><span>💫</span><span>🌹</span>
+            </div>
+        </div>
+
+        <!-- Action button -->
+        <button class="replay-btn" onclick="replayFireworks()">
+            🎆 Bắn pháo hoa lại
+        </button>
+    </div>
+</div>
+
+<script th:src="@{/js/birthday.js}"></script>
+<script th:inline="javascript">
+    const recipientName = [[${birthday.recipientName}]];
+</script>
+</body>
+</html>
