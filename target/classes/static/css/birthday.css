@@ -573,6 +573,62 @@ body {
 .replay-btn:active {
     transform: translateY(-1px);
 }
+.letter::before {
+    /* Giữ nguyên code cũ của bạn và thêm dòng dưới đây */
+    background-image:
+            repeating-linear-gradient(transparent, transparent 31px, rgba(212,168,83,0.08) 31px, rgba(212,168,83,0.08) 32px),
+            radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 80%);
+}
+
+/* Hiệu ứng hào quang quét qua bức thư */
+.letter-container::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+    transform: rotate(45deg);
+    animation: shineSweep 6s infinite linear;
+    pointer-events: none;
+}
+.cake-animation {
+    position: relative;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+}
+
+.cake-animation::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1rem;
+    animation: sparkle 1.5s infinite;
+}
+.envelope-seal {
+    /* Code cũ */
+    background: radial-gradient(circle at 30% 30%, #E8A0AD, #C0586A 60%, #8B2535);
+    box-shadow:
+            2px 4px 10px rgba(0,0,0,0.4),
+            inset -2px -2px 5px rgba(0,0,0,0.3),
+            inset 2px 2px 5px rgba(255,255,255,0.4);
+    border: none; /* Bỏ border cũ để dùng gradient cho thật */
+}
+
+.envelope-seal span {
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.5));
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes shineSweep {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {

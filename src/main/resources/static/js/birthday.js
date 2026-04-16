@@ -27,10 +27,19 @@ function openEnvelope() {
     const flap = document.getElementById('envelopeFlap');
     const seal = document.getElementById('seal');
     const letterPeek = document.getElementById('letterPeek');
+    const audio = document.getElementById('birthdaySong');
 
     // Disable further clicks
     wrapper.onclick = null;
     wrapper.style.cursor = 'default';
+    if (!audio.src || audio.src === "") {
+        // Thêm tham số ngẫu nhiên để tránh Cache hoàn toàn
+        audio.src = "/audio/birthday-bgm.mp3?t=" + new Date().getTime();
+        audio.load();
+    }
+    audio.play().catch(error => {
+        console.log("Phát nhạc thất bại:", error);
+    });
 
     // Step 1: Shake envelope
     envelope.classList.add('opening');

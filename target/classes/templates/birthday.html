@@ -10,6 +10,9 @@
     <link rel="stylesheet" th:href="@{/css/birthday.css}">
 </head>
 <body>
+<audio id="birthdaySong" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
 <!-- Floating particles background -->
 <div class="bg-particles" id="bgParticles"></div>
@@ -72,7 +75,7 @@
 
             <!-- Greeting -->
             <div class="letter-greeting">
-                Kính gửi
+                Dear
                 <span class="recipient-name" th:text="${birthday.recipientName}">Người thân yêu</span>
             </div>
 
